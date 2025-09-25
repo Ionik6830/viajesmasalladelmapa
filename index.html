@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agencia de Viajes - Tu Aventura</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            background-color: #0d47a1;
+            padding: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+        }
+
+        nav button:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        nav button.active {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        nav button.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 20%;
+            width: 60%;
+            height: 3px;
+            background-color: #4fc3f7;
+            border-radius: 3px;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            margin-top: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #0d47a1;
+            margin-bottom: 25px;
+            font-size: 28px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #1a73e8, #4fc3f7);
+            border-radius: 3px;
+        }
+
+        .offer-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid #1a73e8;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .offer-card h3 {
+            color: #0d47a1;
+            margin-bottom: 12px;
+            font-size: 22px;
+        }
+
+        .price {
+            color: #e53935;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 15px;
+            display: inline-block;
+            background-color: #ffebee;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #0d47a1;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background-color: #f8f9fa;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        button[type="submit"] {
+            background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+            color: white;
+            padding: 14px 35px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(13, 71, 161, 0.3);
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(13, 71, 161, 0.4);
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 1px solid #bbdefb;
+        }
+
+        .contact-info h3 {
+            color: #0d47a1;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .contact-info p {
+            margin-bottom: 12px;
+            color: #1a237e;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌍 Tu Agencia de Viajes</h1>
+        <p>Descubre el mundo con nosotros</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><button class="tab-button active" onclick="showTab('ofertas')">Ofertas</button></li>
+            <li><button class="tab-button" onclick="showTab('contacto')">Contacto</button></li>
+            <li><button class="tab-button" onclick="showTab('formulario-contacto')">Formulario de Contacto</button></li>
+            <li><button class="tab-button" onclick="showTab('viaje-personalizado')">Viaje Personalizado</button></li>
+        </ul>
+    </nav>
+
+    <!-- Pestaña de Ofertas -->
+    <div id="ofertas" class="tab-content active">
+        <h2>🎉 Ofertas Especiales</h2>
+        
+        <div class="offer-card">
+            <h3>🏖️ Playa del Caribe - México</h3>
+            <p>7 días en Cancún con todo incluido</p>
+            <p>✈️ Vuelos directos desde Madrid</p>
+            <p>🏨 Hotel 5 estrellas frente al mar</p>
+            <p class="price">Desde 899€</p>
+        </div>
+
+        <div class="offer-card">
+            <h3>🗼 París Romántico</h3>
+            <p>Fin de semana en la ciudad del amor</p>
+            <p>✈️ Vuelos desde Barcelona</p>
+            <p>🏨 Hotel boutique en el centro</p>
+            <p class="price">Desde 299€</p>
+        </div>
+
+        <div class="offer-card">
+            <h3>🏔️ Aventura en los Alpes</h3>
+            <p>Semana de esquí en Suiza</p>
+            <p>✈️ Vuelos a Zúrich</p>
+            <p>🏨 Chalet de lujo</p>
+            <p class="price">Desde 1,299€</p>
+        </div>
+
+        <div class="offer-card">
+            <h3>🌸 Japón Express</h3>
+            <p>10 días descubriendo Tokio y Kioto</p>
+            <p>✈️ Vuelos directos</p>
+            <p>🏨 Hoteles tradicionales y modernos</p>
+            <p class="price">Desde 1,599€</p>
+        </div>
+    </div>
+
+    <!-- Pestaña de Contacto -->
+    <div id="contacto" class="tab-content">
+        <h2>📞 Información de Contacto</h2>
+        
+        <div class="contact-info">
+            <h3>Nuestras Oficinas</h3>
+            <p><strong>Dirección:</strong> Calle Mayor 123, 28013 Madrid, España</p>
+            <p><strong>Teléfono:</strong> +34 91 123 45 67</p>
+            <p><strong>Email:</strong> info@tuagenciadeviajes.com</p>
+            <p><strong>Horario:</strong> Lunes a Viernes: 9:00 - 19:00 | Sábados: 10:00 - 14:00</p>
+        </div>
+
+        <div class="grid">
+            <div class="contact-info">
+                <h3>Servicio de Atención al Cliente</h3>
+                <p>📱 WhatsApp: +34 600 123 456</p>
+                <p>💬 Chat online: Disponible 24/7</p>
+                <p>📧 Email: soporte@tuagenciadeviajes.com</p>
+            </div>
+
+            <div class="contact-info">
+                <h3>Emergencias</h3>
+                <p>🚨 Teléfono 24h: +34 91 123 45 68</p>
+                <p>✈️ Cancelaciones: cancelar@tuagenciadeviajes.com</p>
+                <p>🏥 Asistencia médica: +34 91 123 45 69</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pestaña de Formulario de Contacto -->
+    <div id="formulario-contacto" class="tab-content">
+        <h2>📬 Formulario de Contacto</h2>
+        <p>¿Tienes alguna pregunta? Rellena el formulario y nos pondremos en contacto contigo:</p>
+        
+        <form action="https://formsubmit.co/rgleon6830@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Nuevo mensaje desde Formulario de Contacto">
+            <input type="hidden" name="_captcha" value="false">
+            
+            <div class="form-group">
+                <label for="nombre-contacto">Nombre completo *</label>
+                <input type="text" id="nombre-contacto" name="nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email-contacto">Email *</label>
+                <input type="email" id="email-contacto" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telefono-contacto">Teléfono</label>
+                <input type="tel" id="telefono-contacto" name="telefono">
+            </div>
+
+            <div class="form-group">
+                <label for="asunto">Asunto *</label>
+                <select id="asunto" name="asunto" required>
+                    <option value="">Seleccione un asunto</option>
+                    <option value="informacion">Información general</option>
+                    <option value="reserva">Consulta sobre reserva</option>
+                    <option value="cancelacion">Cancelación</option>
+                    <option value="reclamacion">Reclamación</option>
+                    <option value="otros">Otros</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="mensaje">Mensaje *</label>
+                <textarea id="mensaje" name="mensaje" required placeholder="Escribe tu mensaje aquí..."></textarea>
+            </div>
+
+            <button type="submit">Enviar mensaje</button>
+        </form>
+    </div>
+
+    <!-- Pestaña de Viaje Personalizado -->
+    <div id="viaje-personalizado" class="tab-content">
+        <h2>✈️ Solicita tu Viaje Personalizado</h2>
+        <p>Cuéntanos cómo sería tu viaje ideal y te prepararemos un presupuesto a medida:</p>
+        
+        <form action="https://formsubmit.co/rgleon6830@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Nueva solicitud de viaje personalizado">
+            <input type="hidden" name="_captcha" value="false">
+
+            <div class="grid">
+                <div class="form-group">
+                    <label for="nombre-viaje">Nombre completo *</label>
+                    <input type="text" id="nombre-viaje" name="nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email-viaje">Email *</label>
+                    <input type="email" id="email-viaje" name="email" required>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="form-group">
+                    <label for="telefono-viaje">Teléfono *</label>
+                    <input type="tel" id="telefono-viaje" name="telefono" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="presupuesto">Presupuesto aproximado (€)</label>
+                    <select id="presupuesto" name="presupuesto">
+                        <option value="">Seleccione un rango</option>
+                        <option value="500-1000">500€ - 1,000€</option>
+                        <option value="1000-2000">1,000€ - 2,000€</option>
+                        <option value="2000-3000">2,000€ - 3,000€</option>
+                        <option value="3000-5000">3,000€ - 5,000€</option>
+                        <option value="5000+">Más de 5,000€</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="destino">Destino deseado *</label>
+                <input type="text" id="destino" name="destino" placeholder="Ej: Tailandia, Perú, Islandia..." required>
+            </div>
+
+            <div class="form-group">
+                <label for="duracion">Duración aproximada *</label>
+                <select id="duracion" name="duracion" required>
+                    <option value="">Seleccione duración</option>
+                    <option value="1-3">1-3 días</option>
+                    <option value="4-7">4-7 días</option>
+                    <option value="8-14">8-14 días</option>
+                    <option value="15-21">15-21 días</option>
+                    <option value="22+">Más de 22 días</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion">Cuéntanos más sobre tu viaje ideal *</label>
+                <textarea id="descripcion" name="descripcion" required placeholder="Describe qué te gustaría ver, hacer, tus intereses..."></textarea>
+            </div>
+
+            <button type="submit">Solicitar presupuesto</button>
+        </form>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
