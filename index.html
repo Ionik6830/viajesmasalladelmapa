@@ -43,35 +43,6 @@
   transform: translateY(-6px);
   box-shadow: 0 8px 20px rgba(0,0,0,.15);
 }
-.card-flip { perspective: 1000px; }
-    .card-flip:hover .card-inner { transform: rotateY(180deg); }
-    .card-inner { 
-      position: relative; 
-      width: 100%; 
-      height: 100%; 
-      text-align: center; 
-      transition: transform 0.6s; 
-      transform-style: preserve-3d; 
-    }
-    .card-inner:hover { cursor: pointer; }
-    .card-front, .card-back { 
-      position: absolute; 
-      width: 100%; 
-      height: 100%; 
-      backface-visibility: hidden; 
-      border-radius:8px; 
-      overflow:hidden; 
-      box-shadow:0 2px 8px rgba(0,0,0,.1); 
-    }
-    .card-back { 
-      background: #fff; 
-      color: #222; 
-      transform: rotateY(180deg); 
-      padding: 1rem; 
-    }
-    .card-back h3 { font-size: 1.5rem; margin-bottom: 1rem; }
-    .card-back ul { list-style-type: none; padding: 0; }
-    .card-back li { margin-bottom: 0.5rem; }
   </style>
 </head>
 <body>
@@ -165,139 +136,59 @@
   <h2>Viajes low-cost por Europa</h2>
   <div class="grid">
 
-     <!-- Lisboa -->
-    <div class="card-flip">
-      <div class="card-inner">
-        <div class="card-front">
-          <img src="https://images.unsplash.com/photo-1512850183-6d7990f42385?auto=format&fit=crop&w=1350&q=80" alt="Lisboa">
-          <div class="card-body">
-            <h3>⚓ Lisboa exprés</h3>
-            <p>Vuelo ida/vuelta + 2 noches hostal. Free tour por el centro histórico.</p>
-            <p><strong style="color:#ff4f5e;">Desde 95 €</strong></p>
-          </div>
-        </div>
-        <div class="card-back">
-          <h3>⚓ Lisboa exprés</h3>
-          <p><strong>Itinerario:</strong></p>
-          <ul>
-            <li><strong>Día 1:</strong> Llegada a Lisboa, traslado al hostal. Free tour por el centro histórico.</li>
-            <li><strong>Día 2:</strong> Visita al Castillo de San Jorge y al Barrio Alto.</li>
-          </ul>
-        </div>
+    <!-- Lisboa -->
+    <div class="card" style="background:#fff3e0;border-left:6px solid #ff9800;">
+      <div class="card-body" style="padding:1rem;">
+        <h3>🌉 Lisboa exprés</h3>
+        <p>Vuelo ida/vuelta + 2 noches hostal.</p>
+        <p><strong style="color:#ff4f5e;">Desde 95 €</strong></p>
       </div>
     </div>
 
     <!-- Budapest -->
-    <div class="card-flip">
-      <div class="card-inner">
-        <div class="card-front">
-          <img src="https://images.unsplash.com/photo-1504512419970-58e3b4079ab2?auto=format&fit=crop&w=1350&q=80" alt="Budapest">
-          <div class="card-body">
-            <h3>bateau mouche Budapest</h3>
-            <p>Vuelo + 3 noches hotel + spa Széchenyi.</p>
-            <p><strong style="color:#ff4f5e;">Desde 149 €</strong></p>
-          </div>
-        </div>
-        <div class="card-back">
-          <h3>bateau mouche Budapest</h3>
-          <p><strong>Itinerario:</strong></p>
-          <ul>
-            <li><strong>Día 1:</strong> Llegada a Budapest, traslado al hotel. Tour por el centro histórico.</li>
-            <li><strong>Día 2:</strong> Visita al Parlamento y al Puente de las Cadenas.</li>
-            <li><strong>Día 3:</strong> Día libre con acceso al spa Széchenyi.</li>
-          </ul>
-        </div>
+    <div class="card" style="background:#e8f5e9;border-left:6px solid #4caf50;">
+      <div class="card-body" style="padding:1rem;">
+        <h3>🛁 Budapest termal</h3>
+        <p>Vuelo + 3 noches hotel + spa Széchenyi.</p>
+        <p><strong style="color:#ff4f5e;">Desde 149 €</strong></p>
       </div>
     </div>
 
-     <!-- Cracovia -->
-    <div class="card-flip">
-      <div class="card-inner">
-        <div class="card-front">
-          <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1350&q=80" alt="Cracovia">
-          <div class="card-body">
-            <h3>🏰 Cracovia historica</h3>
-            <p>Vuelo + 2 noches hotel + tour Auschwitz-Birkenau.</p>
-            <p><strong style="color:#ff4f5e;">Desde 135 €</strong></p>
-          </div>
-        </div>
-        <div class="card-back">
-          <h3>🏰 Cracovia historia</h3>
-          <p><strong>Itinerario:</strong></p>
-          <ul>
-            <li><strong>Día 1:</strong> Llegada a Cracovia, traslado al hotel. Visita a la Catedral de Cracovia.</li>
-            <li><strong>Día 2:</strong> Tour guiado a Auschwitz-Birkenau.</li>
-          </ul>
-        </div>
+    <!-- Cracovia -->
+    <div class="card" style="background:#fce4ec;border-left:6px solid #e91e63;">
+      <div class="card-body" style="padding:1rem;">
+        <h3>🏰 Cracovia historia</h3>
+        <p>Vuelo + 2 noches hotel + tour Auschwitz-Birkenau.</p>
+        <p><strong style="color:#ff4f5e;">Desde 135 €</strong></p>
       </div>
     </div>
 
-   <!-- Praga -->
-    <div class="card-flip">
-      <div class="card-inner">
-        <div class="card-front">
-          <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1350&q=80" alt="Praga">
-          <div class="card-body">
-            <h3>🏛️ Praga mágica</h3>
-            <p>Vuelo + 3 noches hotel + crucero por el Moldava.</p>
-            <p><strong style="color:#ff4f5e;">Desde 159 €</strong></p>
-          </div>
-        </div>
-        <div class="card-back">
-          <h3>🏛️ Praga mágica</h3>
-          <p><strong>Itinerario:</strong></p>
-          <ul>
-            <li><strong>Día 1:</strong> Llegada a Praga, traslado al hotel. Visita al Castillo de Praga.</li>
-            <li><strong>Día 2:</strong> Crucero por el Moldava. Visita al Puente Carlos.</li>
-            <li><strong>Día 3:</strong> Día libre para explorar la ciudad.</li>
-          </ul>
-        </div>
+    <!-- Praga -->
+    <div class="card" style="background:#e0f7fa;border-left:6px solid #00bcd4;">
+      <div class="card-body" style="padding:1rem;">
+        <h3>🏛️ Praga mágica</h3>
+        <p>Vuelo + 3 noches hotel + crucero por el Moldava.</p>
+        <p><strong style="color:#ff4f5e;">Desde 159 €</strong></p>
       </div>
     </div>
 
-     <!-- Berlín -->
-    <div class="card-flip" onclick="toggleFlip(this)">
-      <div class="card-inner">
-        <div class="card-front">
-          <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1350&q=80" alt="Berlín">
-          <div class="card-body">
-            <h3>🐻 Berlín trendy</h3>
-            <p>Vuelo + 2 noches hostal central + Berlin Welcome Card.</p>
-            <p><strong style="color:#ff4f5e;">Desde 119 €</strong></p>
-          </div>
-        </div>
-        <div class="card-back">
-          <h3>🐻 Berlín trendy</h3>
-          <p><strong>Itinerario:</strong></p>
-          <ul>
-            <li><strong>Día 1:</strong> Llegada a Berlín, traslado al hostal. Free tour por el centro histórico.</li>
-            <li><strong>Día 2:</strong> Visita al Muro de Berlín y al Museo de Checkpoint Charlie.</li>
-          </ul>
-        </div>
+    <!-- Berlín -->
+    <div class="card" style="background:#f3e5f5;border-left:6px solid #9c27b0;">
+      <div class="card-body" style="padding:1rem;">
+        <h3>🐻 Berlín trendy</h3>
+        <p>Vuelo + 2 noches hostal central + Berlin Welcome Card.</p>
+        <p><strong style="color:#ff4f5e;">Desde 119 €</strong></p>
       </div>
     </div>
 
     <!-- Brujas -->
-<div class="card-flip">
-  <div class="card-inner">
-    <div class="card-front">
-      <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1350&q=80" alt="Brujas">
-      <div class="card-body">
+    <div class="card" style="background:#fff8e1;border-left:6px solid #ffc107;">
+      <div class="card-body" style="padding:1rem;">
         <h3>🧀 Brujas medieval</h3>
         <p>Vuelo + 2 noches B&B + tour canal + degustación de chocolate.</p>
         <p><strong style="color:#ff4f5e;">Desde 129 €</strong></p>
       </div>
     </div>
-    <div class="card-back">
-      <h3>🧀 Brujas medieval</h3>
-      <p><strong>Itinerario:</strong></p>
-      <ul>
-        <li><strong>Día 1:</strong> Llegada a Brujas, traslado al B&B. Tour en barco por los canales.</li>
-        <li><strong>Día 2:</strong> Degustación de chocolate en una tienda local. Visita al Belfry.</li>
-      </ul>
-    </div>
-  </div>
-</div>
 
   </div>
 </section>
@@ -574,44 +465,55 @@
 </style>
 
 <!-- Buscador alojamientos -->
- <section id="lodging">
-      <h2>Encuentra tu alojamiento</h2>
-      <p>¿Estás planeando un viaje soñado o simplemente necesitas un lugar para quedarte durante unos días? En nuestra plataforma, encontrarás la opción perfecta para ti. Reserva tu estancia ideal al mejor precio, ya sea un hotel de lujo, un apartamento acogedor, un vuelo + hotel combinado o cualquier otra opción que se adapte a tus necesidades y presupuesto. No importa si estás buscando una escapada romántica, un viaje familiar o un viaje de negocios, tenemos la opción ideal para ti. ¡Haz clic en el botón de búsqueda y comienza a planificar tu próxima aventura hoy mismo!</p>
-        <a href="https://booking.nosoloviajes.voyaverte.es" target="_blank" rel="noopener noreferrer" className="btn-itinerario" style={{display: 'inline-block', marginTop: '1rem', textDecoration: 'none'}}>
-            Buscar Alojamiento
-        </a>
-    </section>
+<section id="lodging">
+  <h2>Encuentra tu alojamiento</h2>
+  <form class="search-form" action="https://booking.nosoloviajes.voyaverte.es" method="get" target="_blank">
+    <input type="text" name="ss" placeholder="¿A dónde vas?" required>
+    <input type="date" name="checkin" required>
+    <input type="date" name="checkout" required>
+    <select name="group_adults">
+      <option>1 adulto</option><option>2 adultos</option><option>3 adultos</option><option>4 adultos</option>
+    </select>
+    <button type="submit">Buscar</button>
+  </form>
+</section>
 
 <footer>
-    <div class="footer-content">
-      <div class="footer-address">
-        <p>Más allá del mapa – Agencia de viajes joven y sin límites</p>
-        <p>Palma del Río, Córdoba, España</p>
-        <p>Teléfono: 698 97 48 26</p>
-      </div>
-      <div class="footer-social">
-        <p>Síguenos en:</p>
-        <a href="https://www.instagram.com/nosolo_viajes" target="_blank" aria-label="Síguenos en Instagram">
-          <img src="https://img.icons8.com/color/48/000000/instagram-new.png" alt="Instagram" width="24" height="24">
-        </a>
-        <a href="https://www.facebook.com/profile.php?id=61573727845683" target="_blank" aria-label="Síguenos en Facebook">
-          <img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook" width="24" height="24">
-        </a>
-        <a href="https://wa.me/34698974826" target="_blank" aria-label="Contactanos por WhatsApp">
-          <img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="WhatsApp" width="24" height="24">
-        </a>
-      </div>
-      <div class="footer-reserva">
-        <p>Reserva aquí tus Vuelos, Hoteles, Cruceros, Circuitos.... ¡Todo lo que quieras!</p>
-        <p>Tu Agencia de viajes en Palma del Río. Gracias por confiar en nosotros</p>
-      </div>
+  <div class="footer-content">
+    <div class="footer-address">
+      <p>Más allá del mapa – Agencia de viajes joven y sin límites</p>
+      <p>Palma del Río, Córdoba, España</p>
+      <p>Teléfono: 698 97 48 26</p>
     </div>
-    <div class="footer-bottom">
-      <p>© 2025 Más allá del mapa. Todos los derechos reservados.</p>
-      <p>Aviso legal | Términos y Condiciones Generales | Política de privacidad y Política de cookies</p>
-      <p>Powered by Onlinetravel</p>
+    <div class="footer-links">
+      <p>Aviso legal</p>
+      <p>Términos y Condiciones Generales</p>
+      <p>Política de privacidad</p>
+      <p>Política de cookies</p>
     </div>
-  </footer>
+    <div class="footer-social">
+      <p>Síguenos en:</p>
+      <a href="https://www.instagram.com/nosolo_viajes" target="_blank">
+        <img src="https://img.icons8.com/color/48/000000/instagram-new.png" alt="Instagram" width="24" height="24">
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61573727845683" target="_blank">
+        <img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook" width="24" height="24">
+      </a>
+      <a href="https://wa.me/34698974826" target="_blank">
+        <img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="WhatsApp" width="24" height="24">
+      </a>
+    </div>
+    <div class="footer-reserva">
+      <p>Reserva aquí tus Vuelos, Hoteles, Cruceros, Circuitos.... ¡Todo lo que quieras!</p>
+      <p>Tu Agencia de viajes en Palma del Río. Gracias por confiar en nosotros</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Más allá del mapa. Todos los derechos reservados.</p>
+    <p>Aviso legal | Términos y Condiciones Generales | Política de privacidad y Política de cookies</p>
+    <p>Powered by Onlinetravel</p>
+  </div>
+</footer>
 
 <style>
   footer {
@@ -654,13 +556,6 @@
     margin: 0.5rem 0;
   }
 </style>
-
-<script>
-  function toggleFlip(card) {
-    const innerCard = card.querySelector('.card-inner');
-    innerCard.style.transform = innerCard.style.transform === 'rotateY(180deg)' ? 'rotateY(0deg)' : 'rotateY(180deg)';
-  }
-</script>
 
 </body>
 </html>
