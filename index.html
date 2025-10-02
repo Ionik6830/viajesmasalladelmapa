@@ -2,12 +2,13 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Más allá del mapa – Agencia de viajes</title>
+  <title>Viajes más allá del mapa – Agencia de viajes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root{ --c1:#ff4f5e; --c2:#ff9a3c; --c3:#0f3460; --c4:#f8f9fa; }
     *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',sans-serif;}
     body{background:var(--c4);color:#222;line-height:1.6;}
+
     header{position:relative;height:65vh;overflow:hidden;}
     .carousel{display:flex;width:500%;height:100%;animation:slide 65s infinite;}
     .carousel img{width:20%;height:100%;object-fit:cover;}
@@ -21,9 +22,32 @@
     }
     .overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;flex-direction:column;color:#fff;text-align:center;}
     .overlay h1{font-size:3rem;margin-bottom:.5rem;text-shadow:1px 1px 4px #000;}
-    nav{background:var(--c3);color:#fff;padding:1rem;display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;}
-    nav a{color:#fff;text-decoration:none;font-weight:bold;}
-    section{padding:2rem;max-width:1200px;margin:auto;}
+
+    /* Pestañas */
+    .tabs{display:flex;justify-content:center;background:var(--c3);flex-wrap:wrap;}
+    .tab-button{
+      background:var(--c3);
+      color:#fff;
+      border:none;
+      padding:1rem 1.2rem;
+      cursor:pointer;
+      font-weight:bold;
+      transition:background .3s;
+    }
+    .tab-button:hover,
+    .tab-button.active{
+      background:var(--c1);
+    }
+    .tab-content{
+      display:none;
+      padding:2rem;
+      max-width:1200px;
+      margin:auto;
+    }
+    .tab-content.active{
+      display:block;
+    }
+
     h2{color:var(--c1);margin-bottom:1rem;font-size:2rem;}
     .grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));}
     .card{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.1);}
@@ -33,22 +57,13 @@
     .search-form{background:#fff;padding:1rem;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);display:flex;flex-wrap:wrap;gap:.5rem;}
     .search-form input,.search-form select{flex:1 1 150px;padding:.5rem;border:1px solid #ccc;border-radius:4px;}
     .search-form button{background:var(--c1);color:#fff;border:none;padding:.6rem 1rem;border-radius:4px;cursor:pointer;}
-    footer{background:var(--c3);color:#fff;text-align:center;padding:1rem;margin-top:2rem;}
 
-    /* Resaltado al pasar el ratón */
-.card {
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0,0,0,.15);
-}
+    footer{background:var(--c3);color:#fff;text-align:center;padding:1rem;margin-top:2rem;}
   </style>
 </head>
 <body>
 
 <header>
-  <!-- Carrusel con imágenes directas de Unsplash -->
   <div class="carousel">
     <img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1350&q=80" alt="Barcelona">
     <img src="https://images.unsplash.com/photo-1512850183-6d7990f42385?auto=format&fit=crop&w=1350&q=80" alt="Praga">
@@ -57,439 +72,115 @@
     <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1350&q=80" alt="Granada">
   </div>
   <div class="overlay">
-    <h1>Más allá del mapa</h1>
+    <h1>Viajes más allá del mapa</h1>
     <p>Tus viajes empiezan donde terminan los límites.</p>
   </div>
 </header>
 
-<nav>
-  <a href="#spain">España low-cost</a>
-  <a href="#europe">Europa low-cost</a>
-  <a href="#circuits">Circuitos</a>
-  <a href="#lodging">Alojamientos</a>
-</nav>
-
-<!-- Viajes low-cost España -->
-<section id="spain">
-  <h2>Viajes low-cost por España</h2>
-  <div class="grid">
-
-    <!-- Granada -->
-    <div class="card" style="background:#fff3cd;border-left:6px solid #ffc107;">
-      <div class="card-body" style="padding:1rem;">
-        <h3>🕌 Granada express</h3>
-        <p>2 noches hotel + entrada a la Alhambra. Salida desde Madrid.</p>
-        <p><strong style="color:#ff4f5e;">Desde 89 €</strong></p>
-      </div>
-    </div>
-
-    <!-- Valencia -->
-    <div class="card" style="background:#e7f3ff;border-left:6px solid #007bff;">
-      <div class="card-body" style="padding:1rem;">
-        <h3>🏖️ Valencia playa & cultura</h3>
-        <p>3 noches hotel 3★ + Valencia Tourist Card.</p>
-        <p><strong style="color:#ff4f5e;">Desde 115 €</strong></p>
-      </div>
-    </div>
-
-    <!-- Bilbao -->
-    <div class="card" style="background:#f0fff4;border-left:6px solid #28a745;">
-      <div class="card-body" style="padding:1rem;">
-        <h3>🍴 Bilbao foodie</h3>
-        <p>Vuelo + 2 noches hotel + tour gastronómico de pintxos.</p>
-        <p><strong style="color:#ff4f5e;">Desde 129 €</strong></p>
-      </div>
-    </div>
-
-    <!-- Cádiz -->
-    <div class="card" style="background:#fff0f0;border-left:6px solid #dc3545;">
-      <div class="card-body" style="padding:1rem;">
-        <h3>🌅 Cádiz sur y sol</h3>
-        <p>2 noches hostal Casco Histórico + free tour Barrio del Pópulo.</p>
-        <p><strong style="color:#ff4f5e;">Desde 75 €</strong></p>
-      </div>
-    </div>
-
-    <!-- Santander -->
-    <div class="card" style="background:#f0f8ff;border-left:6px solid #0d6efd;">
-      <div class="card-body" style="padding:1rem;">
-        <h3>🌄 Santander & Picos</h3>
-        <p>3 noches hotel + excursión teleférico Fuente Dé.</p>
-        <p><strong style="color:#ff4f5e;">Desde 139 €</strong></p>
-      </div>
-    </div>
-
-    <!-- Almería -->
-    <div class="card" style="background:#fffaf0;border-left:6px solid #fd7e14;">
-      <div class="card-body" style="padding:1rem;">
-        <h3>🎬 Almería sol y cine</h3>
-        <p>2 noches hotel + entrada Alcazaba + visita Desierto Tabernas.</p>
-        <p><strong style="color:#ff4f5e;">Desde 99 €</strong></p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- Viajes low-cost Europa -->
-<section id="europe">
-  <h2>Viajes low-cost por Europa</h2>
-  <div class="grid">
-
-    <!-- Lisboa -->
-    <div class="card" style="background:#fff3e0;border-left:6px solid #ff9800;">
-      <div class="card-body" style="padding:1rem;">
-        <h3>🌉 Lisboa exprés</h3>
-        <p>Vuelo ida/vuelta + 2 noches hostal.</p>
-        <p><strong style="color:#ff4f5e;">Desde 95 €</strong></p>
-      </div>
-    </div>
-
-    <!-- Budapest -->
-    <div class="card" style="background:#e8f5e9;border-left:6px solid #4caf50;">
-      <div class="card-body" style="padding:1rem;">
-        <h3>🛁 Budapest termal</h3>
-        <p>Vuelo + 3 noches hotel + spa Széchenyi.</p>
-        <p><strong style="color:#ff4f5e;">Desde 149 €</strong></p>
-      </div>
-    </div>
-
-    <!-- Cracovia -->
-    <div class="card" style="background:#fce4ec;border-left:6px solid #e91e63;">
-      <div class="card-body" style="padding:1rem;">
-        <h3>🏰 Cracovia historia</h3>
-        <p>Vuelo + 2 noches hotel + tour Auschwitz-Birkenau.</p>
-        <p><strong style="color:#ff4f5e;">Desde 135 €</strong></p>
-      </div>
-    </div>
-
-    <!-- Praga -->
-    <div class="card" style="background:#e0f7fa;border-left:6px solid #00bcd4;">
-      <div class="card-body" style="padding:1rem;">
-        <h3>🏛️ Praga mágica</h3>
-        <p>Vuelo + 3 noches hotel + crucero por el Moldava.</p>
-        <p><strong style="color:#ff4f5e;">Desde 159 €</strong></p>
-      </div>
-    </div>
-
-    <!-- Berlín -->
-    <div class="card" style="background:#f3e5f5;border-left:6px solid #9c27b0;">
-      <div class="card-body" style="padding:1rem;">
-        <h3>🐻 Berlín trendy</h3>
-        <p>Vuelo + 2 noches hostal central + Berlin Welcome Card.</p>
-        <p><strong style="color:#ff4f5e;">Desde 119 €</strong></p>
-      </div>
-    </div>
-
-    <!-- Brujas -->
-    <div class="card" style="background:#fff8e1;border-left:6px solid #ffc107;">
-      <div class="card-body" style="padding:1rem;">
-        <h3>🧀 Brujas medieval</h3>
-        <p>Vuelo + 2 noches B&B + tour canal + degustación de chocolate.</p>
-        <p><strong style="color:#ff4f5e;">Desde 129 €</strong></p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- Circuitos con 6 ofertas todo incluido -->
-<section id="circuits">
-  <h2>Circuitos todo incluido</h2>
-
-  <style>
-    .circuitos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .circuito-card {
-      background: #fff;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
-
-    .circuito-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
-    }
-
-    .circuito-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-
-    .circuito-body {
-      padding: 1rem;
-    }
-
-    .circuito-title {
-      font-size: 1.3rem;
-      color: var(--c1);
-      margin-bottom: .3rem;
-    }
-
-    .circuito-duration {
-      color: #666;
-      font-size: .9rem;
-      margin-bottom: .5rem;
-    }
-
-    .circuito-hotel {
-      background: #f8f9fa;
-      padding: .75rem;
-      border-radius: 4px;
-      font-size: .9rem;
-      margin-bottom: 1rem;
-      color: #333;
-    }
-
-    .btn-itinerario {
-      background: var(--c1);
-      color: #fff;
-      border: none;
-      padding: .6rem 1.2rem;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: .9rem;
-    }
-
-    .btn-itinerario:hover {
-      background: #e53e4c;
-    }
-  </style>
-
-  <div class="circuitos-grid">
-
-  <!-- 1. Roma & Toscana -->
-  <article class="circuito-card">
-    <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=800&q=80" alt="Roma">
-    <div class="circuito-body">
-      <h3 class="circuito-title">Roma & Toscana</h3>
-      <p class="circuito-duration">⏱️ 7 días / 6 noches</p>
-      <div class="circuito-hotel">
-        Hotel 4* en Roma (zona Coliseo) + villa boutique en Toscana con piscina.
-      </div>
-      <button class="btn-itinerario" onclick="toggleItinerario('roma-toscana-detail')">
-        Ver itinerario detallado →
-      </button>
-      <div id="roma-toscana-detail" class="itinerario-detail">
-        <h4>Itinerario Roma & Toscana (7 días)</h4>
-        <ul>
-          <li><strong>Día 1 – Roma:</strong> Llegada, traslado al hotel. Tarde libre en Trastevere.</li>
-          <li><strong>Día 2 – Roma:</strong> Coliseo, Foro Romano y Palatino con guía.</li>
-          <li><strong>Día 3 – Roma:</strong> Vaticano: Museos, Capilla Sixtina y Basílica de San Pedro.</li>
-          <li><strong>Día 4 – Toscana:</strong> Traslado a villa en Chianti. Visita a bodega y degustación.</li>
-          <li><strong>Día 5 – Toscana:</strong> Excursión a Siena y San Gimignano.</li>
-          <li><strong>Día 6 – Toscana:</strong> Día libre en la villa con opción de clase de cocina italiana.</li>
-          <li><strong>Día 7 – Roma:</strong> Regreso a Roma vía Florencia. Fin del circuito.</li>
-        </ul>
-      </div>
-    </div>
-  </article>
-
-  <!-- 2. Marruecos Imperial -->
-  <article class="circuito-card">
-    <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80" alt="Marrakech">
-    <div class="circuito-body">
-      <h3 class="circuito-title">Marruecos Imperial</h3>
-      <p class="circuito-duration">⏱️ 8 días / 7 noches</p>
-      <div class="circuito-hotel">
-        Riad tradicional en Marrakech + kasbah de lujo en el desierto del Sáhara.
-      </div>
-      <button class="btn-itinerario" onclick="toggleItinerario('marruecos-detail')">
-        Ver itinerario detallado →
-      </button>
-      <div id="marruecos-detail" class="itinerario-detail">
-        <h4>Itinerario Marruecos Imperial (8 días)</h4>
-        <ul>
-          <li><strong>Día 1 – Casablanca:</strong> Llegada y visita a la Mezquita de Hassan II.</li>
-          <li><strong>Día 2 – Rabat:</strong> Mausoleo de Mohamed V y Kasbah de los Udayas.</li>
-          <li><strong>Día 3 – Meknés & Volúbilis:</strong> Ruinas romanas y puerta de Bab Mansour.</li>
-          <li><strong>Día 4 – Fez:</strong> Medina, teterías y curtiduría.</li>
-          <li><strong>Día 5 – Merzouga:</strong> Paseo en camello y noche en jaima bajo las estrellas.</li>
-          <li><strong>Día 6 – Valle del Dadès:</strong> Gargantas del Todra y kasbahs.</li>
-          <li><strong>Día 7 – Marrakech:</strong> Jardín Majorelle, zocos y espectáculo de fantasia.</li>
-          <li><strong>Día 8 – Traslado al aeropuerto.</strong> Fin del circuito.</li>
-        </ul>
-      </div>
-    </div>
-  </article>
-
-  <!-- 3. Japón Express -->
-  <article class="circuito-card">
-    <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=800&q=80" alt="Kioto">
-    <div class="circuito-body">
-      <h3 class="circuito-title">Japón Express</h3>
-      <p class="circuito-duration">⏱️ 10 días / 9 noches</p>
-      <div class="circuito-hotel">
-        Ryokan tradicional en Kioto + hotel en Shibuya, Tokio.
-      </div>
-      <button class="btn-itinerario" onclick="toggleItinerario('japon-detail')">
-        Ver itinerario detallado →
-      </button>
-      <div id="japon-detail" class="itinerario-detail">
-        <h4>Itinerario Japón Express (10 días)</h4>
-        <ul>
-          <li><strong>Día 1 – Tokio:</strong> Llegada y traslado. Shibuya Crossing por la noche.</li>
-          <li><strong>Día 2 – Tokio:</strong> Senso-ji, barrio de Akihabara y crucero por la bahía.</li>
-          <li><strong>Día 3 – Tokio:</strong> Harajuku, Meiji y barrio de modas.</li>
-          <li><strong>Día 4 – Hakone:</strong> Lago Ashi, teleférico y onsen.</li>
-          <li><strong>Día 5 – Kioto:</strong> Templo dorado y barrio Gion.</li>
-          <li><strong>Día 6 – Kioto:</strong> Arashiyama, bambú y kimono.</li>
-          <li><strong>Día 7 – Nara:</strong> Ciervo sagrado y gran Buda.</li>
-          <li><strong>Día 8 – Osaka:</strong> Castillo y calle Dotonbori.</li>
-          <li><strong>Día 9 – Tokio libre:</strong> Compras y ramen.</li>
-          <li><strong>Día 10 – Traslado al aeropuerto.</strong></li>
-        </ul>
-      </div>
-    </div>
-  </article>
-
-  <!-- 4. Costa Azul & Provenza -->
-  <article class="circuito-card">
-    <img src="https://images.pexels.com/photos/4591168/pexels-photo-4591168.jpeg?auto=format&fit=crop&w=800&q=80" alt="Niza">
-    <div class="circuito-body">
-      <h3 class="circuito-title">Costa Azul & Provenza</h3>
-      <p class="circuito-duration">⏱️ 6 días / 5 noches</p>
-      <div class="circuito-hotel">
-        Hotel boutique en Niza (vistas al mar) + mas provenzal con viñedos privados.
-      </div>
-      <button class="btn-itinerario" onclick="toggleItinerario('provenza-detail')">
-        Ver itinerario detallado →
-      </button>
-      <div id="provenza-detail" class="itinerario-detail">
-        <h4>Itinerario Costa Azul & Provenza (6 días)</h4>
-        <ul>
-          <li><strong>Día 1 – Niza:</strong> Paseo por el casco antiguo y la Promenade des Anglais.</li>
-          <li><strong>Día 2 – Mónaco:</strong> Palacio de los Grimaldi y casino de Montecarlo.</li>
-          <li><strong>Día 3 – Cannes:</strong> Paseo por La Croisette y playa privada.</li>
-          <li><strong>Día 4 – Provenza:</strong> Campos de lavanda y pueblo de Gordes.</li>
-          <li><strong>Día 5 – Aviñón:</strong> Palacio de los Papas y Puente de San Benezet.</li>
-          <li><strong>Día 6 – Traslado al aeropuerto de Niza.</strong></li>
-        </ul>
-      </div>
-    </div>
-  </article>
-
-  <!-- 5. Perú Mágico -->
-  <article class="circuito-card">
-    <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=800&q=80" alt="Machu Picchu">
-    <div class="circuito-body">
-      <h3 class="circuito-title">Perú Mágico</h3>
-      <p class="circuito-duration">⏱️ 9 días / 8 noches</p>
-      <div class="circuito-hotel">
-        Hotel 5* en Lima (Miraflores) + lodge exclusivo en el Valle Sagrado.
-      </div>
-      <button class="btn-itinerario" onclick="toggleItinerario('peru-detail')">
-        Ver itinerario detallado →
-      </button>
-      <div id="peru-detail" class="itinerario-detail">
-        <h4>Itinerario Perú Mágico (9 días)</h4>
-        <ul>
-          <li><strong>Día 1 – Lima:</strong> Llegada, recorrido por el centro histórico y cena en Barranco.</li>
-          <li><strong>Día 2 – Lima → Cusco:</strong> Vuelo y aclimatación. City tour.</li>
-          <li><strong>Día 3 – Valle Sagrado:</strong> Pisac y Ollantaytambo.</li>
-          <li><strong>Día 4 – Machu Picchu:</strong> Tren panorámico y visita guiada.</li>
-          <li><strong>Día 5 – Cusco libre:</strong> Opcional: Rainbow Mountain.</li>
-          <li><strong>Día 6 – Cusco → Puno:</strong> Ruta del Sol.</li>
-          <li><strong>Día 7 – Lago Titicaca:</strong> Islas Uros y Taquile.</li>
-          <li><strong>Día 8 – Puno → Lima:</strong> Vuelo y tarde libre.</li>
-          <li><strong>Día 9 – Traslado al aeropuerto.</strong></li>
-        </ul>
-      </div>
-    </div>
-  </article>
-
-  <!-- 6. Turquía Encantada -->
-  <article class="circuito-card">
-    <img src="https://images.unsplash.com/photo-1565008576549-57569a49371d?auto=format&fit=crop&w=800&q=80" alt="Capadocia">
-    <div class="circuito-body">
-      <h3 class="circuito-title">Turquía Encantada</h3>
-      <p class="circuito-duration">⏱️ 8 días / 7 noches</p>
-      <div class="circuito-hotel">
-        Hotel cueva de lujo en Capadocia + boutique hotel en Estambul (Sultanahmet).
-      </div>
-      <button class="btn-itinerario" onclick="toggleItinerario('turquia-detail')">
-        Ver itinerario detallado →
-      </button>
-      <div id="turquia-detail" class="itinerario-detail">
-        <h4>Itinerario Turquía Encantada (8 días)</h4>
-        <ul>
-          <li><strong>Día 1 – Estambul:</strong> Mezquita Azul y Gran Bazar.</li>
-          <li><strong>Día 2 – Estambul:</strong> Santa Sofía y crucero por el Bósforo.</li>
-          <li><strong>Día 3 – Capadocia:</strong> Vuelo y paseo en globo al amanecer.</li>
-          <li><strong>Día 4 – Capadocia:</strong> Valle de Goreme y ciudades subterráneas.</li>
-          <li><strong>Día 5 – Esmirna:</strong> Vuelo y recorrido por el casco antiguo.</li>
-          <li><strong>Día 6 – Éfeso:</strong> Excursión a la antigua ciudad romana.</li>
-          <li><strong>Día 7 – Pamukkale:</strong> Terrazas de travertino y Hierápolis.</li>
-          <li><strong>Día 8 – Traslado al aeropuerto.</strong></li>
-        </ul>
-      </div>
-    </div>
-  </article>
-
+<!-- PESTAÑAS -->
+<div class="tabs">
+  <button class="tab-button active" onclick="openTab(event, 'inicio')">Inicio</button>
+  <button class="tab-button" onclick="openTab(event, 'spain')">España low-cost</button>
+  <button class="tab-button" onclick="openTab(event, 'europe')">Europa low-cost</button>
+  <button class="tab-button" onclick="openTab(event, 'circuits')">Circuitos</button>
+  <button class="tab-button" onclick="openTab(event, 'sorpresa')">Viajes sorpresa</button>
+  <button class="tab-button" onclick="openTab(event, 'novios')">Viajes de novios</button>
+  <button class="tab-button" onclick="openTab(event, 'ideal')">Encuentra tu viaje ideal</button>
 </div>
 
-<script>
-  function toggleItinerario(id) {
-    const el = document.getElementById(id);
-    el.style.display = el.style.display === 'none' ? 'block' : 'none';
-  }
-</script>
+<!-- CONTENIDO DE PESTAÑAS -->
 
-<style>
-  .itinerario-detail {
-    display: none;
-    margin-top: 1rem;
-    padding: 1rem;
-    background: #f8f9fa;
-    border-radius: 4px;
-    color: #333;
-  }
-  .itinerario-detail h4 {
-    margin-bottom: 0.5rem;
-    color: var(--c1);
-  }
-  .itinerario-detail ul {
-    padding-left: 1.2rem;
-  }
-  .itinerario-detail li {
-    margin-bottom: 0.25rem;
-  }
-</style>
+<!-- INICIO -->
+<div id="inicio" class="tab-content active">
+  <h2>✈️ Tu próxima aventura empieza aquí</h2>
+  <p>En <strong>Viajes más allá del mapa</strong>, hacemos que viajar sea fácil, cómodo y emocionante. Ponemos a tu alcance todo lo que necesitas para vivir experiencias inolvidables:</p>
 
-<!-- Buscador alojamientos -->
-<section id="lodging">
-  <h2>Encuentra tu alojamiento</h2>
-  <form class="search-form" action="https://booking.nosoloviajes.voyaverte.es" method="get" target="_blank">
-    <input type="text" name="ss" placeholder="¿A dónde vas?" required>
-    <input type="date" name="checkin" required>
-    <input type="date" name="checkout" required>
-    <select name="group_adults">
-      <option>1 adulto</option><option>2 adultos</option><option>3 adultos</option><option>4 adultos</option>
-    </select>
-    <button type="submit">Buscar</button>
-  </form>
-</section>
+  <ul style="list-style:none;padding-left:0;line-height:1.8;">
+    <li>🏨 Hoteles en cualquier destino, con las mejores tarifas.</li>
+    <li>✈️ Vuelos nacionales e internacionales al mejor precio.</li>
+    <li>🛎️ Paquetes vuelo + hotel para que viajes sin complicaciones.</li>
+    <li>🚄 Billetes de tren para moverte rápido y cómodo.</li>
+    <li>🚗 Alquiler de coches para disfrutar de cada destino a tu ritmo.</li>
+    <li>🚢 Cruceros por mares y océanos de todo el mundo.</li>
+    <li>🌍 Circuitos y viajes organizados, tanto dentro de España como internacionales.</li>
+    <li>🎭 Entradas a espectáculos, musicales, conciertos y más.</li>
+    <li>🎢 Parques de atracciones y temáticos para toda la familia.</li>
+    <li>🗺️ Tours guiados y sin guía, para descubrir cada destino a tu manera.</li>
+  </ul>
+  <p>✨ <em>...y mucho más, siempre pensado para que disfrutes cada instante de tu viaje.</em></p>
+
+  <div style="text-align:center;margin-top:2rem;">
+    <form action="https://booking.nosoloviajes.voyaverte.es" method="get" target="_blank">
+      <button type="submit" style="
+        font-size:18px;
+        padding:12px 24px;
+        background-color:#d52b1e;
+        color:#fff;
+        border:none;
+        border-radius:5px;
+        cursor:pointer;">
+        Encuentra tu alojamiento
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- ESPAÑA LOW-COST -->
+<div id="spain" class="tab-content">
+  <h2>Viajes low-cost por España</h2>
+  <div class="grid">
+    <div class="card"><div class="card-body"><h3>🕌 Granada express</h3><p>2 noches hotel + entrada a la Alhambra. Salida desde Madrid.</p><p class="price">Desde 89 €</p></div></div>
+    <div class="card"><div class="card-body"><h3>🏖️ Valencia playa & cultura</h3><p>3 noches hotel 3★ + Valencia Tourist Card.</p><p class="price">Desde 115 €</p></div></div>
+    <div class="card"><div class="card-body"><h3>🍴 Bilbao foodie</h3><p>Vuelo + 2 noches hotel + tour gastronómico de pintxos.</p><p class="price">Desde 129 €</p></div></div>
+    <div class="card"><div class="card-body"><h3>🌅 Cádiz sur y sol</h3><p>2 noches hostal Casco Histórico + free tour Barrio del Pópulo.</p><p class="price">Desde 75 €</p></div></div>
+    <div class="card"><div class="card-body"><h3>🌄 Santander & Picos</h3><p>3 noches hotel + excursión teleférico Fuente Dé.</p><p class="price">Desde 139 €</p></div></div>
+    <div class="card"><div class="card-body"><h3>🎬 Almería sol y cine</h3><p>2 noches hotel + entrada Alcazaba + visita Desierto Tabernas.</p><p class="price">Desde 99 €</p></div></div>
+  </div>
+</div>
+
+<!-- EUROPA LOW-COST -->
+<div id="europe" class="tab-content">
+  <h2>Viajes low-cost por Europa</h2>
+  <div class="grid">
+    <div class="card"><div class="card-body"><h3>🌉 Lisboa exprés</h3><p>Vuelo ida/vuelta + 2 noches hostal.</p><p class="price">Desde 95 €</p></div></div>
+    <div class="card"><div class="card-body"><h3>🛁 Budapest termal</h3><p>Vuelo + 3 noches hotel + spa Széchenyi.</p><p class="price">Desde 149 €</p></div></div>
+    <div class="card"><div class="card-body"><h3>🏰 Cracovia historia</h3><p>Vuelo + 2 noches hotel + tour Auschwitz-Birkenau.</p><p class="price">Desde 135 €</p></div></div>
+    <div class="card"><div class="card-body"><h3>🏛️ Praga mágica</h3><p>Vuelo + 3 noches hotel + crucero por el Moldava.</p><p class="price">Desde 159 €</p></div></div>
+    <div class="card"><div class="card-body"><h3>🐻 Berlín trendy</h3><p>Vuelo + 2 noches hostal central + Berlin Welcome Card.</p><p class="price">Desde 119 €</p></div></div>
+    <div class="card"><div class="card-body"><h3>🧀 Brujas medieval</h3><p>Vuelo + 2 noches B&B + tour canal + degustación de chocolate.</p><p class="price">Desde 129 €</p></div></div>
+  </div>
+</div>
+
+<!-- CIRCUITOS -->
+<div id="circuits" class="tab-content">
+  <h2>Circuitos todo incluido</h2>
+  <p>Próximamente más circuitos...</p>
+</div>
+
+<!-- VIAJES SORPRESA -->
+<div id="sorpresa" class="tab-content">
+  <h2>Viajes sorpresa</h2>
+  <p>¿Te gustaría que te enviáramos a un destino sin saberlo hasta el último momento? ¡Esta sección llegará pronto!</p>
+</div>
+
+<!-- VIAJES DE NOVIOS -->
+<div id="novios" class="tab-content">
+  <h2>Viajes de novios</h2>
+  <p>Diseñamos tu luna de miel a medida. Contáctanos y cuéntanos tu historia.</p>
+</div>
+
+<!-- ENCUENTRA TU VIAJE IDEAL -->
+<div id="ideal" class="tab-content">
+  <h2>Encuentra tu viaje ideal</h2>
+
+</div>
 
 <footer>
   <div class="footer-content">
     <div class="footer-address">
-      <p>Más allá del mapa – Agencia de viajes joven y sin límites</p>
+      <p>Viajes más allá del mapa – Agencia de viajes joven y sin límites</p>
       <p>Palma del Río, Córdoba, España</p>
       <p>Teléfono: 698 97 48 26</p>
-    </div>
-    <div class="footer-links">
-      <p>Aviso legal</p>
-      <p>Términos y Condiciones Generales</p>
-      <p>Política de privacidad</p>
-      <p>Política de cookies</p>
     </div>
     <div class="footer-social">
       <p>Síguenos en:</p>
@@ -503,59 +194,31 @@
         <img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="WhatsApp" width="24" height="24">
       </a>
     </div>
-    <div class="footer-reserva">
-      <p>Reserva aquí tus Vuelos, Hoteles, Cruceros, Circuitos.... ¡Todo lo que quieras!</p>
-      <p>Tu Agencia de viajes en Palma del Río. Gracias por confiar en nosotros</p>
-    </div>
+
   </div>
   <div class="footer-bottom">
-    <p>© 2025 Más allá del mapa. Todos los derechos reservados.</p>
+    <p>© 2025 Viajes más allá del mapa. Todos los derechos reservados.</p>
     <p>Aviso legal | Términos y Condiciones Generales | Política de privacidad y Política de cookies</p>
     <p>Powered by Onlinetravel</p>
   </div>
 </footer>
 
-<style>
-  footer {
-    background-color: var(--c3);
-    color: #fff;
-    padding: 2rem 0;
-    text-align: center;
+<!-- ✅ Script de pestañas al final -->
+<script>
+  function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].classList.remove("active");
+    }
+    tablinks = document.getElementsByClassName("tab-button");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].classList.remove("active");
+    }
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
   }
-
-  .footer-content {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .footer-content p {
-    margin: 0.5rem 0;
-  }
-
-  .footer-content a {
-    color: #ff4f5e;
-    text-decoration: none;
-    font-weight: bold;
-  }
-
-  .footer-social a {
-    margin: 0 0.5rem;
-  }
-
-  .footer-bottom {
-    padding: 1rem 0;
-    border-top: 1px solid #f8f9fa;
-    color: #ccc;
-    font-size: 0.9rem;
-  }
-
-  .footer-bottom p {
-    margin: 0.5rem 0;
-  }
-</style>
+</script>
 
 </body>
 </html>
