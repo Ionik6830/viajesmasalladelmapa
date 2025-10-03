@@ -23,30 +23,11 @@
     .overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;flex-direction:column;color:#fff;text-align:center;}
     .overlay h1{font-size:3rem;margin-bottom:.5rem;text-shadow:1px 1px 4px #000;}
 
-    /* Pestañas */
     .tabs{display:flex;justify-content:center;background:var(--c3);flex-wrap:wrap;}
-    .tab-button{
-      background:var(--c3);
-      color:#fff;
-      border:none;
-      padding:1rem 1.2rem;
-      cursor:pointer;
-      font-weight:bold;
-      transition:background .3s;
-    }
-    .tab-button:hover,
-    .tab-button.active{
-      background:var(--c1);
-    }
-    .tab-content{
-      display:none;
-      padding:2rem;
-      max-width:1200px;
-      margin:auto;
-    }
-    .tab-content.active{
-      display:block;
-    }
+    .tab-button{background:var(--c3);color:#fff;border:none;padding:1rem 1.2rem;cursor:pointer;font-weight:bold;transition:background .3s;}
+    .tab-button:hover,.tab-button.active{background:var(--c1);}
+    .tab-content{display:none;padding:2rem;max-width:1200px;margin:auto;}
+    .tab-content.active{display:block;}
 
     h2{color:var(--c1);margin-bottom:1rem;font-size:2rem;}
     .grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));}
@@ -54,9 +35,14 @@
     .card img{width:100%;height:160px;object-fit:cover;}
     .card-body{padding:1rem;}
     .price{color:var(--c2);font-weight:bold;font-size:1.2rem;}
-    .search-form{background:#fff;padding:1rem;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);display:flex;flex-wrap:wrap;gap:.5rem;}
-    .search-form input,.search-form select{flex:1 1 150px;padding:.5rem;border:1px solid #ccc;border-radius:4px;}
-    .search-form button{background:var(--c1);color:#fff;border:none;padding:.6rem 1rem;border-radius:4px;cursor:pointer;}
+
+    .form-box{background:#fff;padding:2rem;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);max-width:700px;margin:auto;display:flex;flex-direction:column;gap:1rem;}
+    .form-box label{font-weight:600;margin-top:.5rem;}
+    .form-box input,.form-box textarea,.form-box select{padding:.6rem;border:1px solid #ccc;border-radius:4px;font-size:1rem;}
+    .form-box textarea{resize:vertical;min-height:100px;}
+    .form-box button{align-self:flex-start;background:var(--c1);color:#fff;border:none;padding:.75rem 1.5rem;border-radius:4px;cursor:pointer;font-size:1rem;}
+    .form-box input[type=checkbox]{margin-right:.4rem;}
+    .checkbox-group{display:flex;flex-direction:column;gap:.4rem;margin-top:.5rem;}
 
     footer{background:var(--c3);color:#fff;text-align:center;padding:1rem;margin-top:2rem;}
   </style>
@@ -77,7 +63,6 @@
   </div>
 </header>
 
-<!-- PESTAÑAS -->
 <div class="tabs">
   <button class="tab-button active" onclick="openTab(event, 'inicio')">Inicio</button>
   <button class="tab-button" onclick="openTab(event, 'spain')">España low-cost</button>
@@ -88,13 +73,10 @@
   <button class="tab-button" onclick="openTab(event, 'ideal')">Encuentra tu viaje ideal</button>
 </div>
 
-<!-- CONTENIDO DE PESTAÑAS -->
-
 <!-- INICIO -->
 <div id="inicio" class="tab-content active">
   <h2>✈️ Tu próxima aventura empieza aquí</h2>
   <p>En <strong>Viajes más allá del mapa</strong>, hacemos que viajar sea fácil, cómodo y emocionante. Ponemos a tu alcance todo lo que necesitas para vivir experiencias inolvidables:</p>
-
   <ul style="list-style:none;padding-left:0;line-height:1.8;">
     <li>🏨 Hoteles en cualquier destino, con las mejores tarifas.</li>
     <li>✈️ Vuelos nacionales e internacionales al mejor precio.</li>
@@ -108,19 +90,9 @@
     <li>🗺️ Tours guiados y sin guía, para descubrir cada destino a tu manera.</li>
   </ul>
   <p>✨ <em>...y mucho más, siempre pensado para que disfrutes cada instante de tu viaje.</em></p>
-
   <div style="text-align:center;margin-top:2rem;">
     <form action="https://booking.nosoloviajes.voyaverte.es" method="get" target="_blank">
-      <button type="submit" style="
-        font-size:18px;
-        padding:12px 24px;
-        background-color:#d52b1e;
-        color:#fff;
-        border:none;
-        border-radius:5px;
-        cursor:pointer;">
-        Encuentra tu alojamiento
-      </button>
+      <button type="submit" style="font-size:18px;padding:12px 24px;background-color:#d52b1e;color:#fff;border:none;border-radius:5px;cursor:pointer;">Encuentra tu alojamiento</button>
     </form>
   </div>
 </div>
@@ -154,25 +126,140 @@
 <!-- CIRCUITOS -->
 <div id="circuits" class="tab-content">
   <h2>Circuitos todo incluido</h2>
-  <p>Próximamente más circuitos...</p>
+  <div class="grid">
+    <div class="card"><img src="https://images.unsplash.com/photo-1529260830199-42c24126f198?auto=format&fit=crop&w=1350&q=80" alt="Roma"><div class="card-body"><h3>Roma & Toscana</h3><p>⏱️ 7 días / 6 noches<br>Hotel 4* en Roma (zona Coliseo) + villa boutique en Toscana con piscina.</p><a href="#" style="color:var(--c1);font-weight:bold;">Ver itinerario detallado →</a></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=1350&q=80" alt="Japón"><div class="card-body"><h3>Japón Express</h3><p>⏱️ 10 días / 9 noches<br>Ryokan tradicional en Kioto + hotel en Shibuya, Tokio.</p><a href="#" style="color:var(--c1);font-weight:bold;">Ver itinerario detallado →</a></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1350&q=80" alt="Costa Azul"><div class="card-body"><h3>Costa Azul & Provenza</h3><p>⏱️ 6 días / 5 noches<br>Hotel boutique en Niza (vistas al mar) + mas provenzal con viñedos privados.</p><a href="#" style="color:var(--c1);font-weight:bold;">Ver itinerario detallado →</a></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=1350&q=80" alt="Perú"><div class="card-body"><h3>Perú Mágico</h3><p>⏱️ 9 días / 8 noches<br>Hotel 5* en Lima (Miraflores) + lodge exclusivo en el Valle Sagrado.</p><a href="#" style="color:var(--c1);font-weight:bold;">Ver itinerario detallado →</a></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1539050146377-516d2a0acb41?auto=format&fit=crop&w=1350&q=80" alt="Turquía"><div class="card-body"><h3>Turquía Encantada</h3><p>⏱️ 8 días / 7 noches<br>Hotel cueva de lujo en Capadocia + boutique hotel en Estambul (Sultanahmet).</p><a href="#" style="color:var(--c1);font-weight:bold;">Ver itinerario detallado →</a></div></div>
+  </div>
 </div>
 
 <!-- VIAJES SORPRESA -->
 <div id="sorpresa" class="tab-content">
-  <h2>Viajes sorpresa</h2>
-  <p>¿Te gustaría que te enviáramos a un destino sin saberlo hasta el último momento? ¡Esta sección llegará pronto!</p>
+  <h2>Descubre tu próximo destino de ensueño</h2>
+  <form class="form-box" action="https://formsubmit.co/rgleon6830@gmail.com" method="POST">
+    <label>¿A qué región te gustaría viajar?</label>
+    <select name="region" required>
+      <option value="" disabled selected>Seleccione una región</option>
+      <option>Europa</option><option>Asia</option><option>América</option><option>África</option><option>Oceanía</option><option>Me da igual – ¡sorpréndeme!</option>
+    </select>
+
+    <label>Fechas del Viaje</label>
+    <input type="text" name="fechas" placeholder="Seleccione un rango de fechas" onfocus="(this.type='date')" onblur="(this.type='text')" required>
+
+    <label>¿Cuál es tu presupuesto estimado para alojamientos?</label>
+    <div class="radio-group">
+      <label><input type="radio" name="presupuesto" value="50-100" required> Entre 50€ y 100€ por noche</label>
+      <label><input type="radio" name="presupuesto" value="100-200"> Entre 100€ y 200€ por noche</label>
+      <label><input type="radio" name="presupuesto" value="200+"> Más de 200€ por noche</label>
+    </div>
+
+    <label>¿Tienes alguna preferencia especial o requisito adicional?</label>
+    <textarea name="comentarios" placeholder="Compártenos tus deseos especiales, preferencias dietéticas, actividades favoritas, etc."></textarea>
+
+    <label>¿Cómo prefieres que te contactemos?</label>
+    <div class="radio-group">
+      <label><input type="radio" name="contacto" value="email" required> Correo electrónico</label>
+      <label><input type="radio" name="contacto" value="telefono"> Teléfono</label>
+    </div>
+
+    <label>Nombre *</label>
+    <input type="text" name="nombre" placeholder="Tu nombre" required>
+
+    <label>Apellido *</label>
+    <input type="text" name="apellido" placeholder="Tu apellido" required>
+
+    <label>Correo electrónico *</label>
+    <input type="email" name="email" placeholder="tu@email.com" required>
+
+    <label>Número de teléfono *</label>
+    <input type="tel" name="telefono" placeholder="+34 XXX XXX XXX" required>
+
+    <label><input type="checkbox" name="privacidad" required> He leído y acepto la política de privacidad y autorizo el tratamiento de mis datos para gestionar mi solicitud de viaje.</label>
+
+    <button type="submit">Enviar Solicitud</button>
+  </form>
 </div>
 
 <!-- VIAJES DE NOVIOS -->
 <div id="novios" class="tab-content">
-  <h2>Viajes de novios</h2>
-  <p>Diseñamos tu luna de miel a medida. Contáctanos y cuéntanos tu historia.</p>
+  <h2>Vuestro Viaje de Novios Soñado</h2>
+  <p>Rellenad este formulario y un asesor especializado se pondrá en contacto con vosotros.</p>
+  <form class="form-box" action="https://formsubmit.co/rgleon6830@gmail.com" method="POST">
+    <h3>Información de la Pareja</h3>
+    <label>Nombre *</label>
+    <input type="text" name="nombre" placeholder="Nombre de uno de los novios" required>
+    <label>Apellidos *</label>
+    <input type="text" name="apellidos" placeholder="Apellidos" required>
+    <label>Email de contacto *</label>
+    <input type="email" name="email" placeholder="vuestro@email.com" required>
+    <label>Teléfono de contacto *</label>
+    <input type="tel" name="telefono" placeholder="+34 XXX XXX XXX" required>
+
+    <h3>Detalles de la Luna de Miel</h3>
+    <label>Contadnos cómo sería vuestro viaje ideal *</label>
+    <textarea name="descripcion" placeholder="Destinos que os gustan, tipo de viaje (relax, aventura, cultural), actividades que os gustaría hacer, etc." required></textarea>
+    <label>Duración (días) *</label>
+    <input type="text" name="duracion" placeholder="Ej: 15" required>
+    <label>Presupuesto aproximado (total) *</label>
+    <input type="text" name="presupuesto" placeholder="Ej: 5000" required>
+
+    <label><input type="checkbox" name="privacidad" required> He leído y acepto la política de privacidad y autorizo el tratamiento de mis datos para gestionar mi solicitud de viaje.</label>
+    <button type="submit">Solicitar mi Viaje de Novios</button>
+  </form>
 </div>
 
 <!-- ENCUENTRA TU VIAJE IDEAL -->
 <div id="ideal" class="tab-content">
-  <h2>Encuentra tu viaje ideal</h2>
+  <h2>🌍 Encuentra tu Viaje Ideal</h2>
+  <p>Cuéntanos qué tipo de experiencia buscas y te ayudaremos a encontrar la oferta perfecta.</p>
 
+  <form class="form-box" action="https://formsubmit.co/rgleon6830@gmail.com" method="POST">
+    <h3>Información de Contacto</h3>
+    <label>Nombre completo *</label>
+    <input type="text" name="nombre" placeholder="Tu nombre y apellidos" required>
+    <label>Email *</label>
+    <input type="email" name="email" placeholder="tu@email.com" required>
+    <label>Teléfono *</label>
+    <input type="tel" name="telefono" placeholder="+34 XXX XXX XXX" required>
+    <label>Número de personas *</label>
+    <input type="number" name="personas" min="1" placeholder="1" required>
+
+    <h3>Tipo de Oferta Deseada</h3>
+    <label>Tipo de viaje *</label>
+    <input type="text" name="tipo_viaje" placeholder="Ej: Cultural, Relax, Aventura..." required>
+    <label>Destino preferido *</label>
+    <input type="text" name="destino" placeholder="Ej: Italia, Caribe, Fiordos Noruegos..." required>
+
+    <h3>Fechas del Viaje</h3>
+    <label>Fecha de entrada y salida *</label>
+    <input type="text" name="fechas" placeholder="Seleccione un rango de fechas" onfocus="(this.type='date')" onblur="(this.type='text')" required>
+    <label><input type="checkbox" name="flexible"> ¿Eres flexible con las fechas?</label>
+
+    <h3>Presupuesto</h3>
+    <label>Presupuesto aproximado por persona</label>
+    <input type="text" name="presupuesto" placeholder="Ej: 800">
+
+    <h3>Complementos y Servicios Adicionales</h3>
+    <div class="checkbox-group">
+      <label><input type="checkbox" name="servicios[]" value="vuelos"> Vuelos incluidos</label>
+      <label><input type="checkbox" name="servicios[]" value="alojamiento"> Alojamiento</label>
+      <label><input type="checkbox" name="servicios[]" value="traslados"> Traslados</label>
+      <label><input type="checkbox" name="servicios[]" value="seguro"> Seguro de viaje</label>
+      <label><input type="checkbox" name="servicios[]" value="guia"> Guía turístico</label>
+      <label><input type="checkbox" name="servicios[]" value="actividades"> Actividades y excursiones</label>
+      <label><input type="checkbox" name="servicios[]" value="comidas"> Comidas incluidas</label>
+      <label><input type="checkbox" name="servicios[]" value="coche"> Alquiler de coche</label>
+    </div>
+
+    <h3>Observaciones Adicionales</h3>
+    <label>Cuéntanos más detalles sobre tu viaje ideal</label>
+    <textarea name="observaciones" placeholder="Preferencias especiales, necesidades específicas o cualquier otro complemento que desees..."></textarea>
+
+    <label><input type="checkbox" name="privacidad" required> He leído y acepto la política de privacidad y autorizo el tratamiento de mis datos para gestionar mi solicitud de viaje.</label>
+    <button type="submit">Enviar Solicitud</button>
+  </form>
 </div>
 
 <footer>
@@ -184,17 +271,10 @@
     </div>
     <div class="footer-social">
       <p>Síguenos en:</p>
-      <a href="https://www.instagram.com/nosolo_viajes" target="_blank">
-        <img src="https://img.icons8.com/color/48/000000/instagram-new.png" alt="Instagram" width="24" height="24">
-      </a>
-      <a href="https://www.facebook.com/profile.php?id=61573727845683" target="_blank">
-        <img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook" width="24" height="24">
-      </a>
-      <a href="https://wa.me/34698974826" target="_blank">
-        <img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="WhatsApp" width="24" height="24">
-      </a>
+      <a href="https://www.instagram.com/nosolo_viajes" target="_blank"><img src="https://img.icons8.com/color/48/000000/instagram-new.png" alt="Instagram" width="24" height="24"></a>
+      <a href="https://www.facebook.com/profile.php?id=61573727845683" target="_blank"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook" width="24" height="24"></a>
+      <a href="https://wa.me/34698974826" target="_blank"><img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="WhatsApp" width="24" height="24"></a>
     </div>
-
   </div>
   <div class="footer-bottom">
     <p>© 2025 Viajes más allá del mapa. Todos los derechos reservados.</p>
@@ -203,7 +283,6 @@
   </div>
 </footer>
 
-<!-- ✅ Script de pestañas al final -->
 <script>
   function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
