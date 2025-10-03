@@ -52,7 +52,7 @@
     #chatbot-icon span{font-size:12px;text-align:center;padding:2px;}
     #chatbot-window{display:none;position:fixed;bottom:90px;right:20px;width:320px;height:400px;background:#fff;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.3);z-index:1001;flex-direction:column;}
     #chatbot-header{background:var(--c1);color:#fff;padding:.8rem;border-radius:8px 8px 0 0;font-weight:bold;display:flex;justify-content:space-between;align-items:center;}
-    #chatbot-messages{flex:1;padding:1rem;overflow-y:auto;font-size:14px;}
+    #chatbot-messages{flex:1;padding:1rem;overflow-y:auto;font-size:14px;word-break:break-word;}
     #chatbot-input{display:flex;border-top:1px solid #ccc;}
     #chatbot-input input{flex:1;border:none;padding:.6rem;font-size:14px;}
     #chatbot-input button{background:var(--c1);color:#fff;border:none;padding:.6rem 1rem;cursor:pointer;}
@@ -317,7 +317,7 @@
 </div>
 
 <script>
-  /* ---------- PESTAÑAS ---------- */
+  /* ---------- PESTAÑAS / OFERTAS (sin cambios) ---------- */
   function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tab-content");
@@ -332,7 +332,6 @@
     evt.currentTarget.classList.add("active");
   }
 
-  /* ---------- OFERTAS ---------- */
   const ofertas = {
     spain: [
       {titulo:"🕌 Granada express", desc:"2 noches hotel + entrada a la Alhambra. Salida desde Madrid.", precio:"Desde 89 €"},
@@ -352,10 +351,10 @@
     ],
     circuits: [
       {titulo:"Roma & Toscana", desc:"⏱️ 7 días / 6 noches - Hotel 4* en Roma (zona Coliseo) + villa boutique en Toscana con piscina.", img:"https://images.unsplash.com/photo-1529260830199-42c24126f198?auto=format&fit=crop&w=1350&q=80"},
-      {titulo:"Japón Express", desc:"⏱️ 10 días / 9 noches - Ryokan tradicional en Kioto + hotel en Shibuya, Tokio.", img:"https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=1350&q=80"},
-      {titulo:"Costa Azul & Provenza", desc:"⏱️ 6 días / 5 noches - Hotel boutique en Niza (vistas al mar) + mas provenzal con viñedos privados.", img:"https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1350&q=80"},
-      {titulo:"Perú Mágico", desc:"⏱️ 9 días / 8 noches - Hotel 5* en Lima (Miraflores) + lodge exclusivo en el Valle Sagrado.", img:"https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=1350&q=80"},
-      {titulo:"Turquía Encantada", desc:"⏱️ 8 días / 7 noches - Hotel cueva de lujo en Capadocia + boutique hotel en Estambul (Sultanahmet).", img:"https://images.unsplash.com/photo-1539050146377-516d2a0acb41?auto=format&fit=crop&w=1350&q=80"}
+      {titulo:"Japón Express", desc:"⏱️ 10 días / 9 noches - Ryokan tradicional en Kioto + hotel en Shibuya, Tokio.", img:"https://images.unsplash.com/photo/1542051841857-5f90071e7989?auto=format&fit=crop&w=1350&q=80"},
+      {titulo:"Costa Azul & Provenza", desc:"⏱️ 6 días / 5 noches - Hotel boutique en Niza (vistas al mar) + mas provenzal con viñedos privados.", img:"https://images.unsplash.com/photo/1502602898657-3e91760cbb34?auto=format&fit=crop&w=1350&q=80"},
+      {titulo:"Perú Mágico", desc:"⏱️ 9 días / 8 noches - Hotel 5* en Lima (Miraflores) + lodge exclusivo en el Valle Sagrado.", img:"https://images.unsplash.com/photo/1526392060635-9d6019884377?auto=format&fit=crop&w=1350&q=80"},
+      {titulo:"Turquía Encantada", desc:"⏱️ 8 días / 7 noches - Hotel cueva de lujo en Capadocia + boutique hotel en Estambul (Sultanahmet).", img:"https://images.unsplash.com/photo/1539050146377-516d2a0acb41?auto=format&fit=crop&w=1350&q=80"}
     ]
   };
 
@@ -421,14 +420,16 @@
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
   }
 
-  // Tokeniza contenido visible
+  // Indexa contenido visible
   function getVisibleSentences() {
     const activeTab = document.querySelector('.tab-content.active');
     const footer = document.querySelector('footer');
     let text = '';
     if (activeTab) text += ' ' + activeTab.innerText;
     if (footer) text += ' ' + footer.innerText;
-    // frases cortas por puntos o saltos
+    // añade también el título de la pestaña para que "europa" aparezca
+    const activeBtn = document.querySelector('.tab-button.active');
+    if (activeBtn) text += ' ' + activeBtn.innerText;
     return text.toLowerCase().split(/[.\n]+/).map(s => s.trim()).filter(s => s.length > 10);
   }
 
@@ -440,16 +441,16 @@
     chatbotText.value = '';
 
     const sentences = getVisibleSentences();
-    const words = text.split(/\s+/).filter(w => w.length > 2);
+    const words = text.split(/\s+/); // sin filtro de longitud
     let matches = [];
 
     for (const s of sentences) {
       let score = 0;
       for (const w of words) if (s.includes(w)) score++;
-      if (score >= 2) matches.push({s, score});
+      if (score >= 1) matches.push({s, score});
     }
     matches.sort((a, b) => b.score - a.score);
-    const top = matches.slice(0, 3).map(m => m.s.trim()).join('\n');
+    const top = matches.slice(0, 5).map(m => m.s.trim()).join('\n');
 
     if (top) addMessage(top);
     else addMessage("Lo siento, no puedo ayudarle con eso. ¿Puedo ayudarle con otra cosa?");
