@@ -317,6 +317,7 @@
 </div>
 
 <script>
+  /* ---------- PESTAÑAS ---------- */
   function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tab-content");
@@ -331,7 +332,7 @@
     evt.currentTarget.classList.add("active");
   }
 
-  // Datos de ofertas
+  /* ---------- OFERTAS ---------- */
   const ofertas = {
     spain: [
       {titulo:"🕌 Granada express", desc:"2 noches hotel + entrada a la Alhambra. Salida desde Madrid.", precio:"Desde 89 €"},
@@ -396,7 +397,7 @@
     }
   }
 
-  // CHATBOT
+  /* ---------- CHATBOT ---------- */
   const chatbotIcon = document.getElementById('chatbot-icon');
   const chatbotWindow = document.getElementById('chatbot-window');
   const chatbotMessages = document.getElementById('chatbot-messages');
@@ -420,27 +421,38 @@
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
   }
 
-  function getVisibleText() {
+  // Tokeniza contenido visible
+  function getVisibleSentences() {
     const activeTab = document.querySelector('.tab-content.active');
-    if (!activeTab) return '';
-    return activeTab.innerText.toLowerCase() + ' ' + document.querySelector('footer').innerText.toLowerCase();
+    const footer = document.querySelector('footer');
+    let text = '';
+    if (activeTab) text += ' ' + activeTab.innerText;
+    if (footer) text += ' ' + footer.innerText;
+    // frases cortas por puntos o saltos
+    return text.toLowerCase().split(/[.\n]+/).map(s => s.trim()).filter(s => s.length > 10);
   }
 
   function sendMessage() {
-    const text = chatbotText.value.trim().toLowerCase();
-    if (!text) return;
-    addMessage(text, 'user');
+    const raw = chatbotText.value.trim();
+    if (!raw) return;
+    const text = raw.toLowerCase();
+    addMessage(raw, 'user');
     chatbotText.value = '';
 
-    const visibleText = getVisibleText();
+    const sentences = getVisibleSentences();
+    const words = text.split(/\s+/).filter(w => w.length > 2);
+    let matches = [];
 
-    if (visibleText.includes(text)) {
-      // Responder con la línea que contiene la coincidencia
-      const lines = visibleText.split('\n').filter(l => l.includes(text));
-      addMessage(lines.length ? lines[0].trim() : "Información encontrada.");
-    } else {
-      addMessage("Lo siento, no puedo ayudarle con eso. ¿Puedo ayudarle con otra cosa?");
+    for (const s of sentences) {
+      let score = 0;
+      for (const w of words) if (s.includes(w)) score++;
+      if (score >= 2) matches.push({s, score});
     }
+    matches.sort((a, b) => b.score - a.score);
+    const top = matches.slice(0, 3).map(m => m.s.trim()).join('\n');
+
+    if (top) addMessage(top);
+    else addMessage("Lo siento, no puedo ayudarle con eso. ¿Puedo ayudarle con otra cosa?");
   }
 
 </script>
