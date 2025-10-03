@@ -36,13 +36,16 @@
     .card-body{padding:1rem;}
     .price{color:var(--c2);font-weight:bold;font-size:1.2rem;}
 
-    .form-box{background:#fff;padding:2rem;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);max-width:700px;margin:auto;display:flex;flex-direction:column;gap:1rem;}
+    .btn-info{background:var(--c1);color:#fff;border:none;padding:.5rem 1rem;border-radius:4px;cursor:pointer;margin-top:1rem;}
+
+    .form-box{background:#fff;padding:2rem;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);max-width:500px;margin:auto;display:flex;flex-direction:column;gap:1rem;}
     .form-box label{font-weight:600;margin-top:.5rem;}
-    .form-box input,.form-box textarea,.form-box select{padding:.6rem;border:1px solid #ccc;border-radius:4px;font-size:1rem;}
-    .form-box textarea{resize:vertical;min-height:100px;}
-    .form-box button{align-self:flex-start;background:var(--c1);color:#fff;border:none;padding:.75rem 1.5rem;border-radius:4px;cursor:pointer;font-size:1rem;}
-    .form-box input[type=checkbox]{margin-right:.4rem;}
-    .checkbox-group{display:flex;flex-direction:column;gap:.4rem;margin-top:.5rem;}
+    .form-box input,.form-box textarea{padding:.6rem;border:1px solid #ccc;border-radius:4px;font-size:1rem;}
+    .form-box button{align-self:flex-start;background:var(--c1);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:4px;cursor:pointer;font-size:1rem;}
+
+    .modal{display:none;position:fixed;z-index:999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.5);}
+    .modal-content{background:#fff;margin:10% auto;padding:2rem;border-radius:8px;width:90%;max-width:500px;position:relative;}
+    .close{position:absolute;top:1rem;right:1rem;font-size:1.5rem;cursor:pointer;}
 
     footer{background:var(--c3);color:#fff;text-align:center;padding:1rem;margin-top:2rem;}
   </style>
@@ -100,38 +103,38 @@
 <!-- ESPAÑA LOW-COST -->
 <div id="spain" class="tab-content">
   <h2>Viajes low-cost por España</h2>
-  <div class="grid">
-    <div class="card"><div class="card-body"><h3>🕌 Granada express</h3><p>2 noches hotel + entrada a la Alhambra. Salida desde Madrid.</p><p class="price">Desde 89 €</p></div></div>
-    <div class="card"><div class="card-body"><h3>🏖️ Valencia playa & cultura</h3><p>3 noches hotel 3★ + Valencia Tourist Card.</p><p class="price">Desde 115 €</p></div></div>
-    <div class="card"><div class="card-body"><h3>🍴 Bilbao foodie</h3><p>Vuelo + 2 noches hotel + tour gastronómico de pintxos.</p><p class="price">Desde 129 €</p></div></div>
-    <div class="card"><div class="card-body"><h3>🌅 Cádiz sur y sol</h3><p>2 noches hostal Casco Histórico + free tour Barrio del Pópulo.</p><p class="price">Desde 75 €</p></div></div>
-    <div class="card"><div class="card-body"><h3>🌄 Santander & Picos</h3><p>3 noches hotel + excursión teleférico Fuente Dé.</p><p class="price">Desde 139 €</p></div></div>
-    <div class="card"><div class="card-body"><h3>🎬 Almería sol y cine</h3><p>2 noches hotel + entrada Alcazaba + visita Desierto Tabernas.</p><p class="price">Desde 99 €</p></div></div>
-  </div>
+  <div class="grid" id="spain-grid"></div>
 </div>
 
 <!-- EUROPA LOW-COST -->
 <div id="europe" class="tab-content">
   <h2>Viajes low-cost por Europa</h2>
-  <div class="grid">
-    <div class="card"><div class="card-body"><h3>🌉 Lisboa exprés</h3><p>Vuelo ida/vuelta + 2 noches hostal.</p><p class="price">Desde 95 €</p></div></div>
-    <div class="card"><div class="card-body"><h3>🛁 Budapest termal</h3><p>Vuelo + 3 noches hotel + spa Széchenyi.</p><p class="price">Desde 149 €</p></div></div>
-    <div class="card"><div class="card-body"><h3>🏰 Cracovia historia</h3><p>Vuelo + 2 noches hotel + tour Auschwitz-Birkenau.</p><p class="price">Desde 135 €</p></div></div>
-    <div class="card"><div class="card-body"><h3>🏛️ Praga mágica</h3><p>Vuelo + 3 noches hotel + crucero por el Moldava.</p><p class="price">Desde 159 €</p></div></div>
-    <div class="card"><div class="card-body"><h3>🐻 Berlín trendy</h3><p>Vuelo + 2 noches hostal central + Berlin Welcome Card.</p><p class="price">Desde 119 €</p></div></div>
-    <div class="card"><div class="card-body"><h3>🧀 Brujas medieval</h3><p>Vuelo + 2 noches B&B + tour canal + degustación de chocolate.</p><p class="price">Desde 129 €</p></div></div>
-  </div>
+  <div class="grid" id="europe-grid"></div>
 </div>
 
 <!-- CIRCUITOS -->
 <div id="circuits" class="tab-content">
   <h2>Circuitos todo incluido</h2>
-  <div class="grid">
-    <div class="card"><img src="https://images.unsplash.com/photo-1529260830199-42c24126f198?auto=format&fit=crop&w=1350&q=80" alt="Roma"><div class="card-body"><h3>Roma & Toscana</h3><p>⏱️ 7 días / 6 noches<br>Hotel 4* en Roma (zona Coliseo) + villa boutique en Toscana con piscina.</p><a href="#" style="color:var(--c1);font-weight:bold;">Ver itinerario detallado →</a></div></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=1350&q=80" alt="Japón"><div class="card-body"><h3>Japón Express</h3><p>⏱️ 10 días / 9 noches<br>Ryokan tradicional en Kioto + hotel en Shibuya, Tokio.</p><a href="#" style="color:var(--c1);font-weight:bold;">Ver itinerario detallado →</a></div></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1350&q=80" alt="Costa Azul"><div class="card-body"><h3>Costa Azul & Provenza</h3><p>⏱️ 6 días / 5 noches<br>Hotel boutique en Niza (vistas al mar) + mas provenzal con viñedos privados.</p><a href="#" style="color:var(--c1);font-weight:bold;">Ver itinerario detallado →</a></div></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=1350&q=80" alt="Perú"><div class="card-body"><h3>Perú Mágico</h3><p>⏱️ 9 días / 8 noches<br>Hotel 5* en Lima (Miraflores) + lodge exclusivo en el Valle Sagrado.</p><a href="#" style="color:var(--c1);font-weight:bold;">Ver itinerario detallado →</a></div></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1539050146377-516d2a0acb41?auto=format&fit=crop&w=1350&q=80" alt="Turquía"><div class="card-body"><h3>Turquía Encantada</h3><p>⏱️ 8 días / 7 noches<br>Hotel cueva de lujo en Capadocia + boutique hotel en Estambul (Sultanahmet).</p><a href="#" style="color:var(--c1);font-weight:bold;">Ver itinerario detallado →</a></div></div>
+  <div class="grid" id="circuits-grid"></div>
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h3>Solicitar más información</h3>
+    <form id="modal-form" action="https://formsubmit.co/rgleon6830@gmail.com" method="POST">
+      <input type="hidden" name="Pestaña" id="modal-pestaña">
+      <input type="hidden" name="Oferta" id="modal-oferta">
+      <label>Nombre *</label>
+      <input type="text" name="nombre" required>
+      <label>Teléfono *</label>
+      <input type="tel" name="telefono" required>
+      <label>Correo electrónico *</label>
+      <input type="email" name="email" required>
+      <label><input type="checkbox" name="privacidad" required> Acepto la política de privacidad</label>
+      <button type="submit">Enviar</button>
+    </form>
   </div>
 </div>
 
@@ -139,6 +142,7 @@
 <div id="sorpresa" class="tab-content">
   <h2>Descubre tu próximo destino de ensueño</h2>
   <form class="form-box" action="https://formsubmit.co/rgleon6830@gmail.com" method="POST">
+    <input type="hidden" name="Pestaña" value="Viajes sorpresa">
     <label>¿A qué región te gustaría viajar?</label>
     <select name="region" required>
       <option value="" disabled selected>Seleccione una región</option>
@@ -187,6 +191,7 @@
   <h2>Vuestro Viaje de Novios Soñado</h2>
   <p>Rellenad este formulario y un asesor especializado se pondrá en contacto con vosotros.</p>
   <form class="form-box" action="https://formsubmit.co/rgleon6830@gmail.com" method="POST">
+    <input type="hidden" name="Pestaña" value="Viajes de novios">
     <h3>Información de la Pareja</h3>
     <label>Nombre *</label>
     <input type="text" name="nombre" placeholder="Nombre de uno de los novios" required>
@@ -216,6 +221,7 @@
   <p>Cuéntanos qué tipo de experiencia buscas y te ayudaremos a encontrar la oferta perfecta.</p>
 
   <form class="form-box" action="https://formsubmit.co/rgleon6830@gmail.com" method="POST">
+    <input type="hidden" name="Pestaña" value="Encuentra tu viaje ideal">
     <h3>Información de Contacto</h3>
     <label>Nombre completo *</label>
     <input type="text" name="nombre" placeholder="Tu nombre y apellidos" required>
@@ -296,6 +302,71 @@
     }
     document.getElementById(tabName).classList.add("active");
     evt.currentTarget.classList.add("active");
+  }
+
+  // Datos de ofertas
+  const ofertas = {
+    spain: [
+      {titulo:"🕌 Granada express", desc:"2 noches hotel + entrada a la Alhambra. Salida desde Madrid.", precio:"Desde 89 €"},
+      {titulo:"🏖️ Valencia playa & cultura", desc:"3 noches hotel 3★ + Valencia Tourist Card.", precio:"Desde 115 €"},
+      {titulo:"🍴 Bilbao foodie", desc:"Vuelo + 2 noches hotel + tour gastronómico de pintxos.", precio:"Desde 129 €"},
+      {titulo:"🌅 Cádiz sur y sol", desc:"2 noches hostal Casco Histórico + free tour Barrio del Pópulo.", precio:"Desde 75 €"},
+      {titulo:"🌄 Santander & Picos", desc:"3 noches hotel + excursión teleférico Fuente Dé.", precio:"Desde 139 €"},
+      {titulo:"🎬 Almería sol y cine", desc:"2 noches hotel + entrada Alcazaba + visita Desierto Tabernas.", precio:"Desde 99 €"}
+    ],
+    europe: [
+      {titulo:"🌉 Lisboa exprés", desc:"Vuelo ida/vuelta + 2 noches hostal.", precio:"Desde 95 €"},
+      {titulo:"🛁 Budapest termal", desc:"Vuelo + 3 noches hotel + spa Széchenyi.", precio:"Desde 149 €"},
+      {titulo:"🏰 Cracovia historia", desc:"Vuelo + 2 noches hotel + tour Auschwitz-Birkenau.", precio:"Desde 135 €"},
+      {titulo:"🏛️ Praga mágica", desc:"Vuelo + 3 noches hotel + crucero por el Moldava.", precio:"Desde 159 €"},
+      {titulo:"🐻 Berlín trendy", desc:"Vuelo + 2 noches hostal central + Berlin Welcome Card.", precio:"Desde 119 €"},
+      {titulo:"🧀 Brujas medieval", desc:"Vuelo + 2 noches B&B + tour canal + degustación de chocolate.", precio:"Desde 129 €"}
+    ],
+    circuits: [
+      {titulo:"Roma & Toscana", desc:"⏱️ 7 días / 6 noches - Hotel 4* en Roma (zona Coliseo) + villa boutique en Toscana con piscina.", img:"https://images.unsplash.com/photo-1529260830199-42c24126f198?auto=format&fit=crop&w=1350&q=80"},
+      {titulo:"Japón Express", desc:"⏱️ 10 días / 9 noches - Ryokan tradicional en Kioto + hotel en Shibuya, Tokio.", img:"https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=1350&q=80"},
+      {titulo:"Costa Azul & Provenza", desc:"⏱️ 6 días / 5 noches - Hotel boutique en Niza (vistas al mar) + mas provenzal con viñedos privados.", img:"https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1350&q=80"},
+      {titulo:"Perú Mágico", desc:"⏱️ 9 días / 8 noches - Hotel 5* en Lima (Miraflores) + lodge exclusivo en el Valle Sagrado.", img:"https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=1350&q=80"},
+      {titulo:"Turquía Encantada", desc:"⏱️ 8 días / 7 noches - Hotel cueva de lujo en Capadocia + boutique hotel en Estambul (Sultanahmet).", img:"https://images.unsplash.com/photo-1539050146377-516d2a0acb41?auto=format&fit=crop&w=1350&q=80"}
+    ]
+  };
+
+  function renderOfertas(tab, gridId) {
+    const grid = document.getElementById(gridId);
+    ofertas[tab].forEach(oferta => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      if(oferta.img) card.innerHTML = `<img src="${oferta.img}" alt="${oferta.titulo}">`;
+      card.innerHTML += `
+        <div class="card-body">
+          <h3>${oferta.titulo}</h3>
+          <p>${oferta.desc}</p>
+          ${oferta.precio ? `<p class="price">${oferta.precio}</p>` : ''}
+          <button class="btn-info" onclick="openModal('${tab.replace("'","\\'")}', '${oferta.titulo.replace("'","\\'")}', '${oferta.desc.replace("'","\\'")}')">Más información</button>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  renderOfertas('spain', 'spain-grid');
+  renderOfertas('europe', 'europe-grid');
+  renderOfertas('circuits', 'circuits-grid');
+
+  function openModal(tab, titulo, desc) {
+    document.getElementById('modal-pestaña').value = tab;
+    document.getElementById('modal-oferta').value = `${titulo} - ${desc}`;
+    document.getElementById('modal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+  }
+
+  window.onclick = function(event) {
+    if (event.target == document.getElementById('modal')) {
+      closeModal();
+    }
   }
 </script>
 
