@@ -402,15 +402,6 @@
   const chatbotMessages = document.getElementById('chatbot-messages');
   const chatbotText = document.getElementById('chatbot-text');
 
-  const conocimiento = `
-    Ofrecemos: hoteles, vuelos, paquetes vuelo+hotel, billetes de tren, alquiler de coches, cruceros, circuitos, entradas a espectáculos, parques temáticos, tours guiados y mucho más.
-    Ejemplos de viajes low-cost en España: Granada express, Valencia playa y cultura, Bilbao foodie, Cádiz sur y sol, Santander y Picos, Almería sol y cine.
-    Ejemplos de viajes low-cost en Europa: Lisboa exprés, Budapest termal, Cracovia historia, Praga mágica, Berlín trendy, Brujas medieval.
-    Ejemplos de circuitos: Roma y Toscana, Japón Express, Costa Azul y Provenza, Perú Mágico, Turquía Encantada.
-    Nuestro lema: Tus viajes empiezan donde terminan los límites.
-    Contacto: Palma del Río, Córdoba, España. Teléfono: 698 97 48 26.
-  `.toLowerCase();
-
   function toggleChat() {
     chatbotWindow.style.display = chatbotWindow.style.display === 'flex' ? 'none' : 'flex';
     if (chatbotWindow.style.display === 'flex') {
@@ -429,15 +420,24 @@
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
   }
 
+  function getVisibleText() {
+    const activeTab = document.querySelector('.tab-content.active');
+    if (!activeTab) return '';
+    return activeTab.innerText.toLowerCase() + ' ' + document.querySelector('footer').innerText.toLowerCase();
+  }
+
   function sendMessage() {
     const text = chatbotText.value.trim().toLowerCase();
     if (!text) return;
     addMessage(text, 'user');
     chatbotText.value = '';
 
-    if (conocimiento.includes(text)) {
-      const respuesta = conocimiento.split('\n').find(l => l.includes(text)) || "Información encontrada.";
-      addMessage(respuesta.trim());
+    const visibleText = getVisibleText();
+
+    if (visibleText.includes(text)) {
+      // Responder con la línea que contiene la coincidencia
+      const lines = visibleText.split('\n').filter(l => l.includes(text));
+      addMessage(lines.length ? lines[0].trim() : "Información encontrada.");
     } else {
       addMessage("Lo siento, no puedo ayudarle con eso. ¿Puedo ayudarle con otra cosa?");
     }
