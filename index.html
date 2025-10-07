@@ -47,16 +47,6 @@
     .modal-content{background:#fff;margin:10% auto;padding:2rem;border-radius:8px;width:90%;max-width:500px;position:relative;}
     .close{position:absolute;top:1rem;right:1rem;font-size:1.5rem;cursor:pointer;}
 
-    /* CHATBOT */
-    #chatbot-icon{position:fixed;bottom:20px;right:20px;background:var(--c1);color:#fff;border-radius:50%;width:60px;height:60px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,.3);}
-    #chatbot-icon span{font-size:12px;text-align:center;padding:2px;}
-    #chatbot-window{display:none;position:fixed;bottom:90px;right:20px;width:320px;height:400px;background:#fff;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.3);z-index:1001;flex-direction:column;}
-    #chatbot-header{background:var(--c1);color:#fff;padding:.8rem;border-radius:8px 8px 0 0;font-weight:bold;display:flex;justify-content:space-between;align-items:center;}
-    #chatbot-messages{flex:1;padding:1rem;overflow-y:auto;font-size:14px;word-break:break-word;}
-    #chatbot-input{display:flex;border-top:1px solid #ccc;}
-    #chatbot-input input{flex:1;border:none;padding:.6rem;font-size:14px;}
-    #chatbot-input button{background:var(--c1);color:#fff;border:none;padding:.6rem 1rem;cursor:pointer;}
-
     footer{background:var(--c3);color:#fff;text-align:center;padding:1rem;margin-top:2rem;}
   </style>
 </head>
@@ -299,25 +289,7 @@
   </div>
 </footer>
 
-<!-- CHATBOT -->
-<div id="chatbot-icon" title="Tu agente virtual">
-  <span>💬<br>Tu agente virtual</span>
-</div>
-
-<div id="chatbot-window" style="display:none;">
-  <div id="chatbot-header">
-    <span>Tu agente virtual</span>
-    <span class="close" onclick="toggleChat()">&times;</span>
-  </div>
-  <div id="chatbot-messages"></div>
-  <div id="chatbot-input">
-    <input type="text" id="chatbot-text" placeholder="Escribe tu pregunta..." onkeypress="if(event.key==='Enter') sendMessage()">
-    <button onclick="sendMessage()">Enviar</button>
-  </div>
-</div>
-
 <script>
-  /* ---------- PESTAÑAS / OFERTAS (sin cambios) ---------- */
   function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tab-content");
@@ -395,67 +367,6 @@
       closeModal();
     }
   }
-
-  /* ---------- CHATBOT ---------- */
-  const chatbotIcon = document.getElementById('chatbot-icon');
-  const chatbotWindow = document.getElementById('chatbot-window');
-  const chatbotMessages = document.getElementById('chatbot-messages');
-  const chatbotText = document.getElementById('chatbot-text');
-
-  function toggleChat() {
-    chatbotWindow.style.display = chatbotWindow.style.display === 'flex' ? 'none' : 'flex';
-    if (chatbotWindow.style.display === 'flex') {
-      addMessage("Hola, soy tu agente virtual. ¿En qué puedo ayudarte?");
-    }
-  }
-
-  chatbotIcon.onclick = toggleChat;
-
-  function addMessage(text, sender = 'bot') {
-    const msg = document.createElement('div');
-    msg.style.marginBottom = '0.5rem';
-    msg.style.textAlign = sender === 'user' ? 'right' : 'left';
-    msg.innerText = text;
-    chatbotMessages.appendChild(msg);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-  }
-
-  // Indexa contenido visible
-  function getVisibleSentences() {
-    const activeTab = document.querySelector('.tab-content.active');
-    const footer = document.querySelector('footer');
-    let text = '';
-    if (activeTab) text += ' ' + activeTab.innerText;
-    if (footer) text += ' ' + footer.innerText;
-    // añade también el título de la pestaña para que "europa" aparezca
-    const activeBtn = document.querySelector('.tab-button.active');
-    if (activeBtn) text += ' ' + activeBtn.innerText;
-    return text.toLowerCase().split(/[.\n]+/).map(s => s.trim()).filter(s => s.length > 10);
-  }
-
-  function sendMessage() {
-    const raw = chatbotText.value.trim();
-    if (!raw) return;
-    const text = raw.toLowerCase();
-    addMessage(raw, 'user');
-    chatbotText.value = '';
-
-    const sentences = getVisibleSentences();
-    const words = text.split(/\s+/); // sin filtro de longitud
-    let matches = [];
-
-    for (const s of sentences) {
-      let score = 0;
-      for (const w of words) if (s.includes(w)) score++;
-      if (score >= 1) matches.push({s, score});
-    }
-    matches.sort((a, b) => b.score - a.score);
-    const top = matches.slice(0, 5).map(m => m.s.trim()).join('\n');
-
-    if (top) addMessage(top);
-    else addMessage("Lo siento, no puedo ayudarle con eso. ¿Puedo ayudarle con otra cosa?");
-  }
-
 </script>
 
 </body>
